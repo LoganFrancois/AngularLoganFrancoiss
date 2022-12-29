@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="newprojet.component.css">
+
+<h3>Attribuer un projet à cet employé? </h3>
+<div class="container">
+  <form [formGroup]="projetFormGroup" *ngIf="projetFormGroup">
+    <table  class="table">
+      <thead>
+      <th>Nom Projet</th>
+      <th>Date de fin du projet</th>
+      <th>Cout</th>
+      </thead>
+      <tbody>
+      <ng-template #vide><td></td></ng-template>
+      <td> <input type="text" class="form-control" formControlName="nomproj"> </td>
+      <td> <input type="text" class="form-control" formControlName="datefin"> </td>
+      <td> <input type="text" class="form-control" formControlName="cout"> </td>
+      <td> <input type="text" class="form-control" formControlName="{{idemploye}}" readonly> </td>
+      </tbody>
+    </table>
+    <button (click)="onSaveProjet()"class="btn btn-success">
+      ENREGISTRER NOUVEAU PROJET POUR CET EMPLOYE
+    </button>
+  </form>
+</div>

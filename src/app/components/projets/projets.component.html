@@ -1,0 +1,10 @@
+
+<link rel="stylesheet" href="projets.component.css">
+<form  (ngSubmit)="onSearch()" class="form-inline">
+  <p class="lead">Insérer le numéro du projet: </p>
+  <input [(ngModel)]="idprojet"  name="idprojet" type="text" >
+  <button class="btn btn-sm btn-outline-info m-lg-2" type="submit"> RECHERCHE PROJET</button>
+</form>
+<ng-container *ngIf="projet">
+  <app-updateprojet [projet]="projet"></app-updateprojet>
+</ng-container>

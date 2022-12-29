@@ -1,0 +1,106 @@
+<link rel="stylesheet" href="updateemploye.component.css">
+
+
+<div class="container">
+  <form [formGroup]="employeFormGroup" *ngIf="employeFormGroup">
+    <div class = "form-group">
+      <label>idemploye</label>
+      <input type ="text" class="form-control" formControlName="idemploye" readonly>
+    </div>
+
+    <div class = "form-group">
+      <label>Nom</label>
+      <input type ="text" class="form-control" formControlName="nom"
+             [ngClass]="{'is-invalid': submitted &&  employeFormGroup.controls['nom'].errors}">
+      <div *ngIf="submitted &&  employeFormGroup.controls['nom'].errors" class="invalid-feedback">
+        <div *ngIf="employeFormGroup.controls['nom'].errors['required']">
+          Nom obligatoire
+        </div>
+      </div>
+    </div>
+
+    <div class = "form-group">
+      <label>Prénom</label>
+      <input type ="text" class="form-control" formControlName="prenom"
+             [ngClass]="{'is-invalid': submitted &&  employeFormGroup.controls['prenom'].errors}">
+      <div *ngIf="submitted &&  employeFormGroup.controls['prenom'].errors" class ="invalid-feedback">
+        <div *ngIf="employeFormGroup.controls['prenom'].errors['required']">
+          Prénom obligatoire
+        </div>
+      </div>
+    </div>
+
+    <div class = "form-group">
+      <label>Matricule</label>
+      <input type ="text" class="form-control" formControlName="matricule"
+             [ngClass]="{'is-invalid': submitted &&  employeFormGroup.controls['matricule'].errors}">
+      <div *ngIf="submitted &&  employeFormGroup.controls['matricule'].errors" class="invalid-feedback">
+        <div *ngIf="employeFormGroup.controls['matricule'].errors['required']">
+          Matricule obligatoire
+        </div>
+      </div>
+    </div>
+
+    <div class = "form-group">
+      <label>Tel</label>
+      <input type ="text" class="form-control" formControlName="tel"
+             [ngClass]="{'is-invalid': submitted &&  employeFormGroup.controls['tel'].errors}">
+      <div *ngIf="submitted &&  employeFormGroup.controls['tel'].errors" class="invalid-feedback">
+        <div *ngIf="employeFormGroup.controls['tel'].errors['required']">
+          Téléphone obligatoire
+        </div>
+      </div>
+    </div>
+
+    <div class = "form-group">
+      <label>Mail</label>
+      <input type ="text" class="form-control" formControlName="mail"
+             [ngClass]="{'is-invalid': submitted &&  employeFormGroup.controls['mail'].errors}">
+      <div *ngIf="submitted &&  employeFormGroup.controls['mail'].errors" class="invalid-feedback">
+        <div *ngIf="employeFormGroup.controls['mail'].errors['required']">
+          Téléphone obligatoire
+        </div>
+      </div>
+    </div>
+
+    <button (click)="onUpdateEmploye()" class="btn btn-success">
+      MODIFIER L'EMPLOYE
+    </button>
+  </form>
+</div>
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+  <ul class="navbar navbar-nav">
+    <li class="nav-item">
+      <button (click)="onSeeProjet()" class="btn btn-info">
+        AFFICHER LES PROJETS DONT IL EST RESPONSABLE
+      </button>
+    </li>
+  </ul>
+</nav>
+<ng-container *ngIf="projets" >
+  <ng-container *ngIf="projets.length>0 else vide">
+    <table class="table table-success">
+      <thead>
+      <th>Numéro du projet</th>
+      <th>Nom du projet</th>
+      <th>Date de début</th>
+      <th>Date de fin</th>
+      <th>Cout</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let pro of projets">
+        <td>{{pro.idprojet}}</td>
+        <td>{{pro.nomproj}}</td>
+        <td>{{pro.datedebut}}</td>
+        <td>{{pro.datefin}}</td>
+        <td>{{pro.cout}}</td>
+
+      </tr>
+      </tbody>
+    </table>
+  </ng-container>
+  <ng-template #vide>
+    Aucun projet pour cet employé.
+  </ng-template>
+</ng-container>
+<app-newprojet [empAct]="employeFormGroup" (newProjet)="onAddProjet($event)"></app-newprojet>

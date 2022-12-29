@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="employes.component.css">
+<br>
+<p class="lead">Insérer le nom du client</p>
+
+<nav class="navbar navbar-expand-sm bg-light navbar-light">
+
+
+      <form #f="ngForm" (ngSubmit)="onSearch(f.value)" class="form-inline">
+        <input ngModel name="nom" type="text" >
+        <button class="btn btn-sm btn-outline-info m-lg-2" type="submit"> RECHERCHE CLIENT </button>
+      </form>
+
+</nav>
+<ng-template [ngIf]="employes">
+  <ng-template [ngIf]="employes.length > 0" [ngIfElse]="inconnu">
+    <table  class="table table-success">
+      <thead>
+      <th>Id Employe</th>
+      <th>Matricule</th>
+      <th>Nom</th>
+      <th>Prenom</th>
+      <th>Tel</th>
+      <th>Supprimer</th>
+      <th>Mettre à jour</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let emp of employes">
+        <td>{{emp.idemploye}}</td>
+        <td>{{emp.matricule}}</td>
+        <td>{{emp.nom}}</td>
+        <td>{{emp.prenom}}</td>
+        <td>{{emp.tel}}</td>
+        <td>
+          <button (click)=onDelete(emp) class="btn btn-danger">
+            Supprimer
+          </button>
+        </td>
+        <td>
+          <button (click)=onEdit(emp) class="btn btn-info">
+            Modifier
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </ng-template>
+  <ng-template #inconnu>
+    Nom inconnu
+  </ng-template>
+</ng-template>
+
+<button (click)="onNewEmploye()" class="btn btn-sm btn-outline-info m-lg-2" type="submit">ENCODER UN NOUVEAU CLIENT</button>
