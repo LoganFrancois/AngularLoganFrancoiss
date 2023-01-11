@@ -7,30 +7,41 @@ import {Projet} from "../../entities/projet.entities";
 
 
 @Injectable({providedIn:"root"})
-export class ProjetService{
+export class ProjetService {
   private host = environment.host;
+
   constructor(private http: HttpClient) {
   }
 
-  deleteProjet(projet: Projet): Observable<void>{
+  deleteProjet(projet: Projet): Observable<void> {
     return this.http.delete<void>(this.host + '/projet/' + projet.idprojet);
   }
-  save(projet: Projet, employe: Employe): Observable<Projet>{
-    alert("Date du début de projet:  = " + projet.datedebut + "Date de fin de projet:  = " + projet.datefin +" Employé responsable: = " + employe.idemploye + " " + employe.nom );
+
+  save(projet: Projet, employe: Employe): Observable<Projet> {
+    alert("Date du début de projet:  = " + projet.datedebut + "Date de fin de projet:  = " + projet.datefin + " Employé responsable: = " + employe.idemploye + " " + employe.nom);
     projet.employe = employe;
     return this.http.post<Projet>(this.host + '/projet/', projet);
   }
 
-  getProjet(idprojet: number): Observable<Projet>{
+  getProjet(idprojet: number): Observable<Projet> {
     return this.http.get<Projet>(this.host + '/projet/' + idprojet);
   }
 
-  updateProjet(projet: Projet): Observable<Projet>{
+  updateProjet(projet: Projet): Observable<Projet> {
     return this.http.put<Projet>(this.host + '/projet/' + projet.idprojet, projet);
   }
-  getProjetEmploye(idemploye: number) : Observable<Projet[]> {
+
+  getProjetEmploye(idemploye: number): Observable<Projet[]> {
     return this.http.get<Projet[]>(this.host + '/projet/idemploye=' + idemploye);
   }
 
+  getProjetByCout(cout: number): Observable<Projet[]> {
+    return this.http.get<Projet[]>(this.host + '/projet/' + cout);
 
+  }
+
+  getProjetsByNom(nomproj: string): Observable<Projet[]> {
+    return this.http.get<Projet[]>(this.host + '/projet/' + nomproj);
+
+  }
 }
