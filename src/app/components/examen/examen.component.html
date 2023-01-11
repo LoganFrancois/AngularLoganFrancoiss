@@ -1,0 +1,23 @@
+<!--
+
+
+
+<form #f="ngForm" (ngSubmit)="onSearchbyTitle(f.value)" class="form-inline">
+  <input ngModel name="nomproj" type="text" >
+  <button class="btn btn-sm btn-outline-info m-lg-2" type="submit"> RECHERCHE PROJET</button>
+</form>
+
+<ng-container *ngIf="projet">
++boucle....
+</ng-container>
+
+
+
+<form  (ngSubmit)="onSearchByCout()" class="form-inline">
+  <p class="lead">Insérer un prix: </p>
+  <input [(ngModel)]="cout"  name="cout" type="text" >
+  <button class="btn btn-sm btn-outline-info m-lg-2" type="submit"> RECHERCHE PROJETS DONT LE COUT EST PLUS ELEVE</button>
+</form>
+
++ boucle...
+-->
